@@ -1,0 +1,39 @@
+// SPDX-License-Identifier: (GPL-2.0+ OR BSD-3-Clause)
+/*
+ * Copyright (C) MYiR 2023 - All Rights Reserved
+ * Author: Alexhu <fan.hu@myirtech.com>
+ */
+
+#include "myb-stm32mp135x-base.dts"
+
+/ {
+	model = "STMicroelectronics STM32MP135F-DK Discovery Board";
+	compatible = "st,stm32mp135f-dk", "st,stm32mp135";
+
+	aliases {
+		serial0 = &uart4;
+		// serial1 = &usart1;
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+	memory@c0000000 {
+		device_type = "memory";
+		reg = <0xc0000000 0x10000000>;
+	};
+
+	reserved-memory {
+			#address-cells = <1>;
+			#size-cells = <1>;
+			ranges;
+
+			optee_framebuffer: optee-framebuffer@cd000000 {
+					/* Secure framebuffer memory */
+					reg = <0xcd000000 0x1000000>;
+					st,protreg = <TZC_REGION_S_RDWR 0>;
+			};
+	};
+
+};

@@ -12,12 +12,17 @@ flavor_dts_file-157F_DK2 = stm32mp157f-dk2.dts
 flavor_dts_file-157F_ED1 = stm32mp157f-ed1.dts
 flavor_dts_file-157F_EV1 = stm32mp157f-ev1.dts
 flavor_dts_file-135F_DK = stm32mp135f-dk.dts
+flavor_dts_file-135X_MYIR256M = myb-stm32mp135x-256m.dts
+flavor_dts_file-135X_MYIR512M = myb-stm32mp135x-512m.dts
+
+flavorlist-256M = $(flavor_dts_file-135X_MYIR256M)
 
 flavorlist-512M = $(flavor_dts_file-157A_DK1) \
 		  $(flavor_dts_file-157C_DK2) \
 		  $(flavor_dts_file-157D_DK1) \
 		  $(flavor_dts_file-157F_DK2) \
-		  $(flavor_dts_file-135F_DK)
+		  $(flavor_dts_file-135F_DK) \
+		  $(flavor_dts_file-135X_MYIR512M)
 
 flavorlist-1G = $(flavor_dts_file-157A_ED1) \
 		$(flavor_dts_file-157A_EV1) \
@@ -41,7 +46,9 @@ flavorlist-MP15 = $(flavor_dts_file-157A_DK1) \
 		  $(flavor_dts_file-157F_ED1) \
 		  $(flavor_dts_file-157F_EV1)
 
-flavorlist-MP13 = $(flavor_dts_file-135F_DK)
+flavorlist-MP13 = $(flavor_dts_file-135F_DK) \
+		$(flavor_dts_file-135F_MYIR256M) \
+		$(flavor_dts_file-135F_MYIR512M)
 
 ifneq ($(PLATFORM_FLAVOR),)
 ifeq ($(flavor_dts_file-$(PLATFORM_FLAVOR)),)
@@ -132,6 +139,10 @@ $(call force,CFG_STM32_LTDC,y,Mandated by CFG_WITH_TUI)
 # Provision virtual space to fit 10MByte plus the TUI frame buffer
 CFG_TUI_FRAME_BUFFER_SIZE_MAX ?= 0x01000000
 CFG_RESERVED_VASPACE_SIZE ?= (10 * 1024 * 1024 + $(CFG_TUI_FRAME_BUFFER_SIZE_MAX))
+endif
+
+ifneq ($(filter $(CFG_EMBED_DTB_SOURCE_FILE),$(flavorlist-256M)),)
+CFG_DRAM_SIZE    ?= 0x10000000
 endif
 
 ifneq ($(filter $(CFG_EMBED_DTB_SOURCE_FILE),$(flavorlist-512M)),)

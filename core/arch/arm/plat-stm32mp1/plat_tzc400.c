@@ -504,7 +504,7 @@ static TEE_Result stm32mp1_tzc_probe(const void *fdt, int node,
 		panic();
 
 	itr_enable(tzc_dev->pdata.irq);
-	tzc_set_action(TZC_ACTION_INT);
+	tzc_set_action(TZC_ACTION_ERR);
 
 	register_pm_core_service_cb(stm32mp1_tzc_pm, tzc_dev,
 				    "stm32mp1-tzc400");

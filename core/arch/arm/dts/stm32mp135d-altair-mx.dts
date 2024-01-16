@@ -6,6 +6,9 @@
 
 #include "stm32mp135d-altair-mx-base.dts"
 
+#include <dt-bindings/soc/stm32mp-tzc400-macro.h>
+#include <dt-bindings/soc/stm32mp13-tzc400.h>
+
 / {
 	model = "Altair::Main Processor Unit of Avionics - UMi";
 	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";

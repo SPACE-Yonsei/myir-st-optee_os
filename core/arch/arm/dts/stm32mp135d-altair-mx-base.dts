@@ -12,8 +12,6 @@
 #include <dt-bindings/pinctrl/stm32-pinfunc.h>
 #include <dt-bindings/clock/stm32mp13-clksrc.h>
 #include <dt-bindings/soc/stm32mp13-etzpc.h>
-#include <dt-bindings/soc/stm32mp-tzc400-macro.h>
-#include <dt-bindings/soc/stm32mp13-tzc400.h>
 
 #include "stm32mp135.dtsi"
 #include "stm32mp13xd.dtsi"

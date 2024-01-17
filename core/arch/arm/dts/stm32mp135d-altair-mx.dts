@@ -56,7 +56,3 @@
 		st,non-secure-otp;
 	};
 };
-
-&saes {
-        status = "okay";
-};

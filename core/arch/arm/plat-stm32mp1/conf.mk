@@ -14,6 +14,7 @@ flavor_dts_file-157F_EV1 = stm32mp157f-ev1.dts
 flavor_dts_file-135F_DK = stm32mp135f-dk.dts
 flavor_dts_file-135X_MYIR256M = myb-stm32mp135x-256m.dts
 flavor_dts_file-135X_MYIR512M = myb-stm32mp135x-512m.dts
+flavor_dts_file-135D_ALTAIR = stm32mp135d-altair-mx.dts
 
 flavorlist-256M = $(flavor_dts_file-135X_MYIR256M)
 
@@ -22,7 +23,8 @@ flavorlist-512M = $(flavor_dts_file-157A_DK1) \
 		  $(flavor_dts_file-157D_DK1) \
 		  $(flavor_dts_file-157F_DK2) \
 		  $(flavor_dts_file-135F_DK) \
-		  $(flavor_dts_file-135X_MYIR512M)
+		  $(flavor_dts_file-135X_MYIR512M) \
+		  $(flavor_dts_file-135D_ALTAIR)
 
 flavorlist-1G = $(flavor_dts_file-157A_ED1) \
 		$(flavor_dts_file-157A_EV1) \
@@ -48,7 +50,8 @@ flavorlist-MP15 = $(flavor_dts_file-157A_DK1) \
 
 flavorlist-MP13 = $(flavor_dts_file-135F_DK) \
 		$(flavor_dts_file-135F_MYIR256M) \
-		$(flavor_dts_file-135F_MYIR512M)
+		$(flavor_dts_file-135F_MYIR512M) \
+		$(flavor_dts_file-135D_ALTAIR)
 
 ifneq ($(PLATFORM_FLAVOR),)
 ifeq ($(flavor_dts_file-$(PLATFORM_FLAVOR)),)

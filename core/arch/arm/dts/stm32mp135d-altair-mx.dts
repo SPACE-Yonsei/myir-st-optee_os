@@ -40,3 +40,12 @@
 	};
 
 };
+
+
+// uart4 is required, but unable to enable on STM32CubeMX
+&uart4 {
+        pinctrl-names = "default";
+        pinctrl-0 = <&uart4_pins_a>;
+        status = "okay";
+};
+

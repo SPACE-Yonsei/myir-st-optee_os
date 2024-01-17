@@ -50,3 +50,9 @@
         status = "okay";
 };
 
+&bsec {
+	board_id: board_id@f0 {
+		reg = <0xf0 0x4>;
+		st,non-secure-otp;
+	};
+};

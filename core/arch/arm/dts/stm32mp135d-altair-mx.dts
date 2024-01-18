@@ -95,7 +95,7 @@
 			cfg_1 {
 				hz = < 1000000000 >;
 				st,clksrc = < CLK_MPU_PLL1P >;
-				st,pll = < &pll1_cfg2 >;
+				st,pll = < &pll1_cfg1 >;
 			};
 		};
 	};

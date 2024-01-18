@@ -119,7 +119,7 @@ $(call force,CFG_DRIVERS_CLK_FIXED,n)
 $(call force,CFG_REGULATOR_DRIVERS,y)
 $(call force,CFG_SCMI_MSG_PERF_DOMAIN,n)
 $(call force,CFG_SECONDARY_INIT_CNTFRQ,y)
-$(call force,CFG_STM32_PKA,n)
+
 $(call force,CFG_STM32_SAES,n)
 $(call force,CFG_STM32_HUK,y)
 $(call force,CFG_STM32_VREFBUF,n)
@@ -235,7 +235,7 @@ CFG_STM32_PKA ?= y
 CFG_STM32_REGULATOR_GPIO ?= y
 CFG_STM32_RNG ?= y
 CFG_STM32_RTC ?= y
-CFG_STM32_SAES ?= y
+CFG_STM32_SAES ?= n
 CFG_STM32_TAMP ?= y
 CFG_STM32_TIM ?= y
 CFG_STM32_UART ?= y

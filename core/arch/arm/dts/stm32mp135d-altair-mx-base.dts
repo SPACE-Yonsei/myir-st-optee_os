@@ -353,7 +353,3 @@
 /* USER CODE BEGIN addons */
 /* USER CODE END addons */
 
-&cpu0 {
-	cpu-supply = <&vddcore>;
-};
-

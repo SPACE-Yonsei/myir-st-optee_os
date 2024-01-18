@@ -91,3 +91,9 @@
 		st,non-secure-otp;
 	};
 };
+
+&iwdg2 {
+	timeout-sec = <32>;
+	secure-timeout-sec = <5>;
+	status = "okay";
+};

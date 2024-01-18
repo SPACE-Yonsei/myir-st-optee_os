@@ -14,6 +14,17 @@
 	model = "Altair::Main Processor Unit of Avionics - UMi";
 	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";
 
+	cpu0-opp-table {
+		opp-1000000000 {
+			opp-hz = /bits/ 64 <1000000000>;
+			opp-microvolt = <1350000>;
+			opp-supported-hw = <0x2>;
+			st,opp-default;
+		};
+		/delete-node/ opp-650000000;
+	};
+
+
 	aliases {
 		serial0 = &uart4;
 		// serial1 = &usart1;

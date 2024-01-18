@@ -88,10 +88,6 @@
 	};
 };
 
-&cpu0 {
-	cpu-supply = <&vddcore>;
-};
-
 // uart4 is required, but unable to enable on STM32CubeMX
 &uart4 {
 	pinctrl-names = "default";

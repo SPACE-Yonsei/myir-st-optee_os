@@ -352,7 +352,7 @@
 
 &cpu0 {
 	cpu-supply = <&vddcore>;
-}
+};
 
 /* USER CODE BEGIN addons */
 /* USER CODE END addons */

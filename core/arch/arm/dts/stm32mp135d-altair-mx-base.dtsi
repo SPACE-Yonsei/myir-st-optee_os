@@ -125,6 +125,8 @@
 	/*"NS_R S_W" peripherals*/
 	DECPROT(STM32MP1_ETZPC_DDRCTRLPHY_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
 	/*"Secured" peripherals*/
+	DECPROT(STM32MP1_ETZPC_HASH_ID, DECPROT_S_RW, DECPROT_UNLOCK)
+	DECPROT(STM32MP1_ETZPC_IWDG1_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_RNG_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_STGENC_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 
@@ -140,6 +142,20 @@
 
 	/* USER CODE BEGIN etzpc */
 	/* USER CODE END etzpc */
+};
+
+&hash{
+	status = "okay";
+
+	/* USER CODE BEGIN hash */
+	/* USER CODE END hash */
+};
+
+&iwdg1{
+	status = "okay";
+
+	/* USER CODE BEGIN iwdg1 */
+	/* USER CODE END iwdg1 */
 };
 
 &iwdg2{
@@ -219,9 +235,10 @@
 			divmn = < 3 61 >;
 			frac = < 0x1000 >;
 		};
-		pll2_vco_1600Mhz: pll2-vco-1600Mhz {
+		pll2_vco_1066Mhz: pll2-vco-1066Mhz {
 			src = < CLK_PLL12_HSI >;
-			divmn = < 3 49 >;
+			divmn = < 3 32 >;
+			frac = < 0xa00 >;
 		};
 		pll3_vco_418Mhz: pll3-vco-418Mhz {
 			src = < CLK_PLL3_HSI >;
@@ -257,8 +274,8 @@
 		st,pll = < &pll2_cfg1 >;
 
 		pll2_cfg1: pll2_cfg1 {
-			st,pll_vco = < &pll2_vco_1600Mhz >;
-			st,pll_div_pqr = < 2 0 1 >;
+			st,pll_vco = < &pll2_vco_1066Mhz >;
+			st,pll_div_pqr = < 1 0 0 >;
 		};
 		/* USER CODE BEGIN pll2 */
 		/* USER CODE END pll2 */
@@ -309,7 +326,7 @@
 		st,ck_axi {
 
 			cfg_1 {
-				hz = < 266666666 >;
+				hz = < 266500000 >;
 				st,clksrc = < CLK_AXI_PLL2P >;
 				st,clkdiv = < DIV(DIV_AXI, 0) >;
 				st,pll = < &pll2_cfg1 >;
@@ -350,10 +367,9 @@
 	/* USER CODE END rtc */
 };
 
+/* USER CODE BEGIN addons */
+/* USER CODE END addons */
 &cpu0 {
 	cpu-supply = <&vddcore>;
 };
-
-/* USER CODE BEGIN addons */
-/* USER CODE END addons */
 

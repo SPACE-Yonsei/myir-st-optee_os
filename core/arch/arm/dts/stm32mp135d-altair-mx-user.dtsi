@@ -6,6 +6,7 @@
 
 #include "stm32mp135d-altair-mx-pinctrl.dtsi"
 
+#include <dt-bindings/power/stm32mp1-power.h>
 #include <dt-bindings/soc/stm32mp-tzc400-macro.h>
 #include <dt-bindings/soc/stm32mp13-tzc400.h>
 

@@ -83,13 +83,6 @@
 		regulator-min-microvolt = <3300000>;
 		regulator-max-microvolt = <3300000>;
 	};
-
-	usb33: usb33 {
-		compatible = "regulator-fixed";
-		regulator-name = "usb33";
-		regulator-min-microvolt = <3300000>;
-		regulator-max-microvolt = <3300000>;
-	};
 };
 
 // uart4 is required, but unable to enable on STM32CubeMX

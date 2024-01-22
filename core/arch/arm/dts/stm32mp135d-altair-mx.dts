@@ -167,12 +167,12 @@
 	/* USER CODE END iwdg2 */
 };
 
-&pwr_regulators{
-	status = "okay";
-
-	/* USER CODE BEGIN pwr_regulators */
-	/* USER CODE END pwr_regulators */
-};
+// &pwr_regulators{
+//	status = "okay";
+//
+//	/* USER CODE BEGIN pwr_regulators */
+//	/* USER CODE END pwr_regulators */
+//};
 
 &rcc{
 	pinctrl-names = "default";

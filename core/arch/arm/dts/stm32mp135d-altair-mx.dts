@@ -77,27 +77,6 @@
 
 }; /*root*/
 
-/*Warning: the configuration of the secured GPIOs should be added in (addons) User Section*/
-&pinctrl {
-	rcc_pins_mx: rcc_mx-0 {
-		pins {
-			pinmux = <STM32_PINMUX('A', 13, AF2)>; /* RCC_MCO_1 */
-			bias-disable;
-			drive-push-pull;
-			slew-rate = <0>;
-		};
-	};
-
-	rtc_pins_mx: rtc_mx-0 {
-		pins {
-			pinmux = <STM32_PINMUX('D', 10, AF0)>; /* RTC_REFIN */
-		};
-	};
-
-	/* USER CODE BEGIN pinctrl */
-	/* USER CODE END pinctrl */
-};
-
 &bsec{
 	status = "okay";
 
@@ -360,18 +339,8 @@
 	/* USER CODE END rng */
 };
 
-&rtc{
-	pinctrl-names = "default";
-	pinctrl-0 = <&rtc_pins_mx>;
-	status = "okay";
-
-	/* USER CODE BEGIN rtc */
-	/* USER CODE END rtc */
-};
-
 /* USER CODE BEGIN addons */
 /* USER CODE END addons */
 &cpu0 {
 	cpu-supply = <&vddcore>;
 };
-

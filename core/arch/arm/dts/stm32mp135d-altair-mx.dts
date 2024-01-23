@@ -77,6 +77,17 @@
 
 }; /*root*/
 
+&pinctrl {
+	rcc_pins_mx: rcc_mx-0 {
+		pins {
+			pinmux = <STM32_PINMUX('A', 13, AF2)>; /* RCC_MCO_1 */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <0>;
+		};
+	};
+};
+
 &bsec{
 	status = "okay";
 

@@ -17,6 +17,9 @@
 #include "stm32mp13xd.dtsi"
 
 /* USER CODE BEGIN includes */
+#include <dt-bindings/power/stm32mp1-power.h>
+#include <dt-bindings/soc/stm32mp-tzc400-macro.h>
+#include <dt-bindings/soc/stm32mp13-tzc400.h>
 /* USER CODE END includes */
 
 / {
@@ -37,10 +40,68 @@
 		ranges;
 
 		/* USER CODE BEGIN reserved-memory */
+		optee_framebuffer: optee-framebuffer@dd000000 {
+				/* Secure framebuffer memory */
+				reg = <0xdd000000 0x1000000>;
+				st,protreg = <TZC_REGION_S_RDWR 0>;
+		};
 		/* USER CODE END reserved-memory */
 	};
 
 	/* USER CODE BEGIN root */
+	aliases {
+		serial0 = &uart4;
+	};
+
+	chosen {
+		stdout-path = "serial0:115200n8";
+	};
+
+	cpu0-opp-table {
+		opp-1000000000 {
+			opp-hz = /bits/ 64 <1000000000>;
+			opp-microvolt = <1350000>;
+			opp-supported-hw = <0x2>;
+			st,opp-default;
+		};
+		/delete-node/ opp-650000000;
+	};
+
+	v3v3: v3v3 {
+		compatible = "regulator-fixed";
+		regulator-name = "v3v3";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+		regulator-always-on;
+	};
+
+	vdd: vdd {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+	};
+
+	vdd_ddr: vdd_ddr {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd_ddr";
+		regulator-min-microvolt = <1350000>;
+		regulator-max-microvolt = <1350000>;
+	};
+
+	vddcore: vddcore {
+		compatible = "regulator-fixed";
+		regulator-name = "vddcore";
+		regulator-min-microvolt = <1350000>;
+		regulator-max-microvolt = <1350000>;
+	};
+
+	vdd_usb: vdd_usb {
+		compatible = "regulator-fixed";
+		regulator-name = "vdd_usb";
+		regulator-min-microvolt = <3300000>;
+		regulator-max-microvolt = <3300000>;
+	};
 	/* USER CODE END root */
 
 	clocks {
@@ -353,5 +414,58 @@
 };
 
 /* USER CODE BEGIN addons */
+&pinctrl {
+	uart4_pins_mx: uart4-0 {
+		pins1 {
+			pinmux = <STM32_PINMUX('D', 6, AF8)>; /* UART4_TX */
+			bias-disable;
+			drive-push-pull;
+			slew-rate = <0>;
+		};
+		pins2 {
+			pinmux = <STM32_PINMUX('D', 8, AF8)>; /* UART4_RX */
+			bias-disable;
+		};
+	};
+};
+
+&uart4 {
+	pinctrl-names = "default";
+	pinctrl-0 = <&uart4_pins_mx>;
+	status = "okay";
+};
+
+
+&bsec {
+	board_id: board_id@f0 {
+		reg = <0xf0 0x4>;
+		st,non-secure-otp;
+	};
+};
+
+&iwdg1 {
+	timeout-sec = <32>;
+	status = "okay";
+};
+
+&iwdg2 {
+	timeout-sec = <32>;
+	secure-timeout-sec = <5>;
+	status = "okay";
+};
+
+&pwr_regulators {
+	system_suspend_supported_soc_modes = <
+		STM32_PM_CSLEEP_RUN
+		STM32_PM_CSTOP_ALLOW_LP_STOP
+		STM32_PM_CSTOP_ALLOW_LPLV_STOP
+		STM32_PM_CSTOP_ALLOW_LPLV_STOP2
+		STM32_PM_CSTOP_ALLOW_STANDBY_DDR_SR
+	>;
+
+	system_off_soc_mode = <STM32_PM_SHUTDOWN>;
+	vdd-supply = <&vdd>;
+	vdd_3v3_usbfs-supply = <&vdd_usb>;
+};
 /* USER CODE END addons */
 

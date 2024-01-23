@@ -166,7 +166,6 @@ static TEE_Result _regulator_enable(struct rdev *rdev)
 		TEE_Result res = _regulator_set_state(rdev, true);
 
 		if (res) {
-			DMSG("regul %s use count %d", rdev->desc->node_name, rdev->use_count); 
 			EMSG("regul %s set state failed with %#"PRIx32,
 			     rdev->desc->node_name, res);
 

@@ -16,13 +16,11 @@
 #include "stm32mp135.dtsi"
 #include "stm32mp13xd.dtsi"
 
-#include "stm32mp135d-altair-mx-user.dtsi"
-
 /* USER CODE BEGIN includes */
 /* USER CODE END includes */
 
 / {
-	model = "Altair::Main Processor Unit of Avionics - UMi";
+	model = "Altair :: Main Processor Unit of Avionics - UMi";
 	compatible = "st,stm32mp135d-altair-mx", "st,stm32mp135";
 
 	memory@c0000000 {
@@ -85,12 +83,6 @@
 			bias-disable;
 			drive-push-pull;
 			slew-rate = <0>;
-		};
-	};
-
-	rtc_pins_mx: rtc_mx-0 {
-		pins {
-			pinmux = <STM32_PINMUX('D', 10, AF0)>; /* RTC_REFIN */
 		};
 	};
 
@@ -188,7 +180,7 @@
 		CLK_MPU_PLL1P
 		CLK_AXI_PLL2P
 		CLK_MLAHBS_PLL3
-		CLK_RTC_LSI
+		CLK_RTC_HSE
 		CLK_MCO1_CSI
 		CLK_MCO2_DISABLED
 		CLK_QSPI_PLL3R
@@ -227,7 +219,7 @@
 		DIV(DIV_APB4, 1)
 		DIV(DIV_APB5, 2)
 		DIV(DIV_APB6, 1)
-		DIV(DIV_RTC, 0)
+		DIV(DIV_RTC, 23)
 		DIV(DIV_MCO1, 3)
 		DIV(DIV_MCO2, 0)
 	>;
@@ -360,18 +352,6 @@
 	/* USER CODE END rng */
 };
 
-&rtc{
-	pinctrl-names = "default";
-	pinctrl-0 = <&rtc_pins_mx>;
-	status = "okay";
-
-	/* USER CODE BEGIN rtc */
-	/* USER CODE END rtc */
-};
-
 /* USER CODE BEGIN addons */
 /* USER CODE END addons */
-&cpu0 {
-	cpu-supply = <&vddcore>;
-};
 

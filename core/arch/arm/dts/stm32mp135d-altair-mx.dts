@@ -414,6 +414,10 @@
 };
 
 /* USER CODE BEGIN addons */
+&cpu0 {
+	cpu-supply = <&vddcore>;
+};
+
 &pinctrl {
 	uart4_pins_mx: uart4-0 {
 		pins1 {

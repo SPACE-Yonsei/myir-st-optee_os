@@ -116,7 +116,7 @@
 		};
 		clk_lse: clk-lse {
 			clock-frequency = <32768>;
-			st,drive = < LSEDRV_HIGHEST >;
+			st,drive = < LSEDRV_MEDIUM_HIGH >;
 			st,css;
 
 			/* USER CODE BEGIN clk_lse */
@@ -140,15 +140,6 @@
 
 /*Warning: the configuration of the secured GPIOs should be added in (addons) User Section*/
 &pinctrl {
-	rcc_pins_mx: rcc_mx-0 {
-		pins {
-			pinmux = <STM32_PINMUX('A', 13, AF2)>; /* RCC_MCO_1 */
-			bias-disable;
-			drive-push-pull;
-			slew-rate = <0>;
-		};
-	};
-
 	/* USER CODE BEGIN pinctrl */
 	/* USER CODE END pinctrl */
 };
@@ -234,8 +225,6 @@
 };
 
 &rcc{
-	pinctrl-names = "default";
-	pinctrl-0 = <&rcc_pins_mx>;
 	status = "okay";
 	clocks = <&clk_hse>, <&clk_hsi>, <&clk_lse>, <&clk_lsi>, <&clk_csi>;
 	clock-names = "clk-hse", "clk-hsi", "clk-lse", "clk-lsi", "clk-csi";
@@ -248,14 +237,14 @@
 		CLK_AXI_PLL2P
 		CLK_MLAHBS_PLL3
 		CLK_RTC_LSE
-		CLK_MCO1_CSI
+		CLK_MCO1_DISABLED
 		CLK_MCO2_DISABLED
 		CLK_QSPI_PLL3R
 		CLK_CKPER_DISABLED
 		CLK_ETH1_PLL4P
 		CLK_SDMMC1_HSI
 		CLK_SDMMC2_HSI
-		CLK_STGEN_HSI
+		CLK_STGEN_HSE
 		CLK_USBPHY_HSE
 		CLK_SPI1_PLL4P
 		CLK_SPI23_PLL4P

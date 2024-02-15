@@ -17,6 +17,9 @@
 #include "stm32mp13xd.dtsi"
 
 /* USER CODE BEGIN includes */
+#include <dt-bindings/power/stm32mp1-power.h>
+#include <dt-bindings/soc/stm32mp-tzc400-macro.h>
+#include <dt-bindings/soc/stm32mp13-tzc400.h>
 /* USER CODE END includes */
 
 / {

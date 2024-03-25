@@ -230,15 +230,6 @@
 	/* USER CODE END iwdg2 */
 };
 
-&qspi{
-	pinctrl-names = "default";
-	pinctrl-0 = <&quadspi_pins_mx>;
-	status = "okay";
-
-	/* USER CODE BEGIN qspi */
-	/* USER CODE END qspi */
-};
-
 &rcc{
 	status = "okay";
 	clocks = <&clk_hse>, <&clk_hsi>, <&clk_lse>, <&clk_lsi>, <&clk_csi>;

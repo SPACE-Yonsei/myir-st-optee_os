@@ -138,25 +138,6 @@
 
 /*Warning: the configuration of the secured GPIOs should be added in (addons) User Section*/
 &pinctrl {
-	quadspi_pins_mx: quadspi_mx-0 {
-		pins1 {
-			pinmux = <STM32_PINMUX('B', 2, AF9)>, /* QUADSPI_BK1_NCS */
-					 <STM32_PINMUX('D', 7, AF11)>, /* QUADSPI_BK1_IO2 */
-					 <STM32_PINMUX('D', 13, AF9)>, /* QUADSPI_BK1_IO3 */
-					 <STM32_PINMUX('F', 8, AF10)>, /* QUADSPI_BK1_IO0 */
-					 <STM32_PINMUX('F', 9, AF10)>; /* QUADSPI_BK1_IO1 */
-			bias-disable;
-			drive-push-pull;
-			slew-rate = <1>;
-		};
-		pins2 {
-			pinmux = <STM32_PINMUX('F', 10, AF9)>; /* QUADSPI_CLK */
-			bias-disable;
-			drive-push-pull;
-			slew-rate = <2>;
-		};
-	};
-
 	/* USER CODE BEGIN pinctrl */
 	/* USER CODE END pinctrl */
 };
@@ -193,7 +174,6 @@
 	DECPROT(STM32MP1_ETZPC_DDRCTRLPHY_ID, DECPROT_NS_R_S_W, DECPROT_LOCK)
 	/*"Secured" peripherals*/
 	DECPROT(STM32MP1_ETZPC_IWDG1_ID, DECPROT_S_RW, DECPROT_UNLOCK)
-	DECPROT(STM32MP1_ETZPC_QSPI_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_RNG_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 	DECPROT(STM32MP1_ETZPC_STGENC_ID, DECPROT_S_RW, DECPROT_UNLOCK)
 
@@ -228,15 +208,6 @@
 	/* USER CODE END iwdg2 */
 };
 
-&qspi{
-	pinctrl-names = "default";
-	pinctrl-0 = <&quadspi_pins_mx>;
-	status = "okay";
-
-	/* USER CODE BEGIN qspi */
-	/* USER CODE END qspi */
-};
-
 &rcc{
 	status = "okay";
 	clocks = <&clk_hse>, <&clk_hsi>, <&clk_lse>, <&clk_lsi>, <&clk_csi>;
@@ -252,7 +223,6 @@
 		CLK_RTC_LSI
 		CLK_MCO1_DISABLED
 		CLK_MCO2_DISABLED
-		CLK_QSPI_ACLK
 		CLK_CKPER_HSE
 		CLK_SDMMC1_PLL4P
 		CLK_SDMMC2_PLL4P
